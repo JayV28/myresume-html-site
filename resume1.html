@@ -89,20 +89,6 @@
             background-color: #2a2a2a;
             padding: 20px;
             text-align: center;
-            transition: all 0.3s ease;
-            border: none; /* Default: no border */
-        }
-        .service.active-project-coordinator {
-            border: 2px solid #f1c40f; /* Yellow for Project Coordinator */
-            background-color: #3a3a00; /* Darker yellow background */
-        }
-        .service.active-system-engineer {
-            border: 2px solid #3498db; /* Blue for System Engineer */
-            background-color: #1a3a5a; /* Darker blue background */
-        }
-        .service.active-survey-programmer {
-            border: 2px solid #2ecc71; /* Green for Survey Programmer */
-            background-color: #1a4a2a; /* Darker green background */
         }
         .service button {
             background-color: #f1c40f;
@@ -122,13 +108,9 @@
             margin-top: 15px;
             text-align: left;
             color: #ccc;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
         }
         .work-details.show {
             display: block;
-            max-height: 500px; /* Adjust based on content size */
         }
     </style>
 </head>
@@ -138,7 +120,7 @@
             <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture">
             <h2>VIC JAY BANCE, ECT</h2>
             <p>ELECTRONICS TECHNICIAN PROFESSIONAL</p>
-            <p><strong>Address:</strong> Little Flower Dormitel, La Guardia, Lahug</p>
+            <p><strong>Address:</strong>Little Flower Dormitel, La Guardia, Lahug</p>
             <p><strong>City:</strong> Cebu City</p>
             <p><strong>Age:</strong> 27</p>
             <div class="skills">
@@ -171,13 +153,13 @@
                 <p>20+ Passed and Certificate</p>
             </div>
             <div class="services">
-                <div class="service" data-job="project-coordinator">
+                <div class="service">
                     <h3>PROJECT COORDINATOR/ TA DESIGNER</h3>
                     <p class="text-gray-750">FIBERHOME TELECOMMUNICATION TECHNOLOGIES CO., LTD.</p>
                     <p class="text-gray-750">8W49+R5R, Sergio Osmeña Jr Blvd, Cebu City, 6000 Cebu</p>    
-                    <p class="text-gray-750">JANUARY 2024 - PRESENT</p>  
-                    <button onclick="toggleDetails('details1', 'project-coordinator')">EXPLORE WORK</button>
-                    <div class="work-details" id="details1">
+                    <p class="text-gray-750">JANUARY 2024- PRESENT</p>  
+                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
+                    <div class="work-details">
                         <h4>Key Responsibilities:</h4>
                         <ul>
                             <li>Updating the final As-Built plan using AutoCAD 2D.</li>
@@ -185,16 +167,15 @@
                             <li>Documented the project site, including As-Built Plans, Network Configuration, PPGIS, PSGC, TA attachments, and AutoCAD Map 3D files with layers.</li>
                             <li>Creating advanced files to streamline workflow and ensure targets are met by the end of the month.</li>
                         </ul>
-
                     </div>
                 </div>
-                <div class="service" data-job="system-engineer">
+                <div class="service">
                     <h3>SYSTEM ENGINEER</h3>
                     <p class="text-gray-750">SKY PLANT TECHNOLOGY CEBU INC.</p>
                     <p class="text-gray-750">Metrobank Plaza Building, 9th Floor, Unit 901, Osmeña Blvd, Cebu City, 6000 Cebu</p>    
-                    <p class="text-gray-750">MARCH 2023 - DECEMBER 2023</p>  
-                    <button onclick="toggleDetails('details2', 'system-engineer')">EXPLORE WORK</button>
-                    <div class="work-details" id="details2">
+                    <p class="text-gray-750">MARCH 2023- DECEMBER 2023</p>  
+                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
+                    <div class="work-details">
                         <h4>Key Responsibilities:</h4>
                         <ul>
                             <li>Maintained and troubleshot servers and employees' computers when issues or errors occurred.</li>
@@ -202,20 +183,20 @@
                             <li>Utilized AutoCAD Plant 3D, AutoCAD 2D, and AutoCAD 3D for design purposes.</li>
                             <li>Designed tarpaulin layouts for company events and occasions using Photoshop.</li>
                         </ul>
-
                     </div>
                 </div>
-                <div class="service" data-job="survey-programmer">
+                <div class="service">
                     <h3>SURVEY PROGRAMMER</h3>
                     <p class="text-gray-750">DYNATA</p>
                     <p class="text-gray-750">PIPC Bldg, 7 MEPZ 2 Rd, Lapu-Lapu, 6015 Cebu</p>    
-                    <p class="text-gray-750">SEPTEMBER 2021 - JANUARY 2022</p>  
-                    <button onclick="toggleDetails('details3', 'survey-programmer')">EXPLORE WORK</button>
-                    <div class="work-details" id="details3">
+                    <p class="text-gray-750">SEPTEMBER 2021- JANUARY 2022</p>  
+                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
+                    <div class="work-details">
                         <h4>Key Responsibilities:</h4>
                         <ul>
                             <li>Responsible for programming and managing online surveys for market research using specialized tools.</li>
                             <li>Assisting senior developers in testing programs, identifying errors, and ensuring the software runs smoothly.</li>
+                          
                         </ul>
                     </div>
                 </div>
@@ -223,18 +204,18 @@
         </div>
     </div>
     <script>
-        function toggleDetails(detailsId, jobType) {
-            const service = document.querySelector(`.service[data-job="${jobType}"]`);
-            const details = document.getElementById(detailsId);
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
             const isVisible = details.classList.contains('show');
-
-            // Toggle the clicked service and details
-            if (isVisible) {
-                details.classList.remove('show');
-                service.classList.remove(`active-${jobType}`);
-            } else {
+            
+            // Hide all other open details
+            document.querySelectorAll('.work-details.show').forEach(detail => {
+                detail.classList.remove('show');
+            });
+            
+            // Toggle the clicked details
+            if (!isVisible) {
                 details.classList.add('show');
-                service.classList.add(`active-${jobType}`);
             }
         }
     </script>
