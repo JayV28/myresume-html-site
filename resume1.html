@@ -4,209 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Resume</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .sidebar {
-            width: 25%;
-            padding: 20px;
-            background-color: #2a2a2a;
-        }
-        .sidebar img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            display: block; /* Ensure image behaves as a block element */
-            margin-left: auto; /* Center horizontally */
-            margin-right: auto; /* Center horizontally */
-        }
-        .sidebar h2 {
-            margin: 10px 0;
-        }
-        .sidebar p {
-            margin: 5px 0;
-            word-spacing: 1px;
-            color: #ccc;
-        }
-        .skills ul {
-            list-style: none;
-            padding: 0;
-        }
-        .skills li {
-            margin: 10px 0;
-        }
         .progress-bar {
             width: 100%;
-            background-color: #333;
-            border-radius: 5px;
+            background-color: #4a5568;
+            border-radius: 0.375rem;
             overflow: hidden;
         }
         .progress {
-            height: 10px;
+            height: 0.5rem;
             background-color: #f1c40f;
-            border-radius: 5px;
-        }
-        .main-content {
-            width: 75%;
-            padding: 20px;
-        }
-        .header-stats-container {
-            background-color: #f1c40f; /* Yellow background */
-            padding: 10px; /* Add padding for better appearance */
-            border-radius: 5px; /* Optional: rounded corners */
-            margin-bottom: 20px; /* Add space between this section and the next */
-        }
-        .header {
-            text-align: center;
-            padding: 50px 0;
-            background: url('https://via.placeholder.com/1200x300') no-repeat center/cover;
-            color: #fff;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            margin: 0;
-            color: #000000; /* Black text for header */
-        }
-        .header p {
-            font-size: 1.2em;
-            color: #ddd;
-        }
-        .header button {
-            background-color: #f1c40f;
-            border: none;
-            padding: 10px 20px;
-            color: #1a1a1a;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .services {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .service {
-            flex: 1;
-            min-width: 200px;
-            background-color: #2a2a2a;
-            padding: 20px;
-            text-align: center;
-        }
-        .service button {
-            background-color: #f1c40f;
-            border: none;
-            padding: 10px;
-            color: #1a1a1a;
-            cursor: pointer;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-            color: #000000; /* Black text for stats */
+            border-radius: 0.375rem;
+            transition: width 0.3s ease-in-out;
         }
         .work-details {
             display: none;
-            margin: 0 0 10px 0;
-            margin-top: 10px;
-            text-align: left;
-            color: #FFFAFA;
-        }
-        .work-details1 {
-            color: #ccc;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
         .work-details.show {
             display: block;
+            max-height: 1000px;
+            opacity: 1;
         }
-        .vertical-services {
-            width: 100%;
+        .work-details p.bold-title {
+            font-weight: 900;
+            position: relative;
+            margin-top: 1.5rem;
         }
-        .vertical-services .service {
-            margin-bottom: 30px;
-        }
-        /* Adjust spacing and boldness */
-        .work-details p {
-            margin-bottom: 0; /* Remove space between all paragraphs */
-            position: relative; /* Ensure proper positioning for border */
-        }
-        .work-details p:first-child {
-            font-weight: 900; /* Make "PROJECT COORDINATOR" extra bold */
-        }
-        .work-details p:first-child::before {
+        .work-details p.bold-title::before {
             content: "";
             position: absolute;
-            top: -10px; /* Place border above the text */
+            top: -0.5rem;
             left: 0;
             width: 100%;
-            border-top: 2px solid #f1c40f; /* Border line above */
-        }
-        /* Ensure no extra space between specific job details */
-        .work-details .job-info p {
-            margin-bottom: 0;
-            display: inline; /* Align text on the same line */
-        }
-        .work-details .job-info p::after {
-            content: "\A"; /* Add a line break after each paragraph */
-            white-space: pre; /* Preserve the line break */
-        }
-        /* Make additional job titles bold and add border */
-        .work-details p:nth-child(5) {
-            font-weight: 900; /* Make "SYSTEM ENGINEER" extra bold */
-        }
-        .work-details p:nth-child(5)::before {
-            content: "";
-            position: absolute;
-            top: -10px; /* Place border above the text */
-            left: 0;
-            width: 100%;
-            border-top: 2px solid #f1c40f; /* Border line above */
-        }
-        .work-details p:nth-child(9) {
-            font-weight: 900; /* Make "SURVEY PROGRAMMER" extra bold */
-        }
-        .work-details p:nth-child(9)::before {
-            content: "";
-            position: absolute;
-            top: -10px; /* Place border above the text */
-            left: 0;
-            width: 100%;
-            border-top: 2px solid #f1c40f; /* Border line above */
-        }
-        /* Add border above seminar titles in SEMINARS AND WORKSHOPS ATTENDED */
-        .work-details ul p {
-            font-weight: 900; /* Make seminar titles bold */
-        }
-        .work-details ul p::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: 0;
-            width: 100%;
-            border-top: 2px solid #f1c40f; /* Border line above */
+            border-top: 2px solid #f1c40f;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture">
-            <h2>VIC JAY BANCE, ECT</h2>
-            <p><strong>Address:</strong>Little Flower Dormitel, La Guardia, Lahug</p>
-            <p><strong>City:</strong> Cebu City</p>
-            <p><strong>Age:</strong> 27</p>
-            <p><strong>Phone:</strong> 09391462903</p>
-            <div class="skills">
-                <ul>
-                    <h3>SKILLS</h3>
+<body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto flex flex-col md:flex-row max-w-6xl p-4">
+        <aside class="md:w-1/4 p-6 bg-gray-800 rounded-lg mb-4 md:mb-0 md:mr-4">
+            <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture" class="rounded-full w-32 h-32 mx-auto" loading="lazy">
+            <h2 class="text-xl font-bold mt-4 text-center">VIC JAY BANCE, ECT</h2>
+            <p class="text-gray-400 text-sm mt-2"><strong>Address:</strong> Little Flower Dormitel, La Guardia, Lahug</p>
+            <p class="text-gray-400 text-sm"><strong>City:</strong> Cebu City</p>
+            <p class="text-gray-400 text-sm"><strong>Age:</strong> 27</p>
+            <p class="text-gray-400 text-sm"><strong>Phone:</strong> 09391462903</p>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold">SKILLS</h3>
+                <ul class="mt-2 space-y-2">
                     <li>AutoCAD – 2D Drafting<div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></li>
                     <li>AutoCAD – 3D Modeling<div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
                     <li>AutoCAD Map 3D – GIS & Mapping<div class="progress-bar"><div class="progress" style="width: 50%;"></div></div></li>
@@ -221,165 +71,142 @@
                     <li>CCTV Layout Design (AutoCAD)<div class="progress-bar"><div class="progress" style="width: 45%;"></div></div></li>
                 </ul>
             </div>
-        </div>
-        <div class="main-content">
-            <div class="header-stats-container">
-                <div class="header">
-                    <h1>Discover my Amazing works and Achievements!</h1>
-                </div>
-                <div class="stats">
+        </aside>
+        <main class="md:w-3/4 p-6">
+            <div class="bg-yellow-500 rounded-lg p-6 mb-6">
+                <header class="text-center bg-cover bg-center py-12" style="background-image: url('https://via.placeholder.com/1200x300')">
+                    <h1 class="text-3xl font-bold text-black">Discover my Amazing works and Achievements!</h1>
+                </header>
+                <div class="flex justify-around mt-4 text-black">
                     <p>2+ Years Experience</p>
-                    <p>100+ Completed Projects</p>  
+                    <p>100+ Completed Projects</p>
                     <p>20+ Passed and Certificate</p>
                 </div>
             </div>
-            <div class="vertical-services">
-               <div class="service">
-                <h2>WORK EXPERIENCE</h2>
-                <button onclick="toggleDetails(this)">EXPLORE WORK</button>
-                <div class="work-details">
-                    <p>PROJECT COORDINATOR/ TA DESIGNER</p>
-                    <div class="job-info">
-                        <p>Fiberhome Telecommunication Technologies Co., Ltd.</p>
-                        <p>8W49+R5R, Sergio Osmeña Jr Blvd, Cebu City, 6000 Cebu</p>
-                        <p>January 2024 - Present</p>
-                    </div>
-                    <h4>Responsibilities:</h4>
-                        <ul>
+            <section class="space-y-6">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-xl font-semibold">WORK EXPERIENCE</h2>
+                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="work-experience-details">EXPLORE WORK</button>
+                    <div class="work-details" id="work-experience-details">
+                        <p class="bold-title">PROJECT COORDINATOR/ TA DESIGNER</p>
+                        <div class="text-gray-400">
+                            <p>Fiberhome Telecommunication Technologies Co., Ltd.</p>
+                            <p>8W49+R5R, Sergio Osmeña Jr Blvd, Cebu City, 6000 Cebu</p>
+                            <p>January 2024 - Present</p>
+                        </div>
+                        <h4 class="text-lg font-medium mt-2">Responsibilities:</h4>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Updating the final As-Built plan using AutoCAD 2D.</li>
                             <li>Revising designs based on the final implementation of the project.</li>
                             <li>Documented the project site, including As-Built Plans, Network Configuration, PPGIS, PSGC, TA attachments, and AutoCAD Map 3D files with layers.</li>
                             <li>Creating advanced files to streamline workflow and ensure targets are met by the end of the month.</li>
                         </ul>
-
-                        <p class="job-info">SYSTEM ENGINEER</p>
-                        <div class="job-info">
-                        <p>Sky Plant Technology Cebu Inc.</p>
-                        <p>Osmeña Blvd, Cebu City</p>
-                        <p>March 2023 - December 2023</p>
-                    </div>
-                    <h4>Responsibilities:</h4>
-                        <ul>
+                        <p class="bold-title">SYSTEM ENGINEER</p>
+                        <div class="text-gray-400">
+                            <p>Sky Plant Technology Cebu Inc.</p>
+                            <p>Osmeña Blvd, Cebu City</p>
+                            <p>March 2023 - December 2023</p>
+                        </div>
+                        <h4 class="text-lg font-medium mt-2">Responsibilities:</h4>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Maintained and troubleshot servers and employees' computers when issues or errors occurred.</li>
                             <li>Designed various types of valves and pipe fittings using AVEVA E3D (Catalogue).</li>
                             <li>Utilized AutoCAD Plant 3D, AutoCAD 2D, and AutoCAD 3D for design purposes.</li>
                             <li>Designed tarpaulin layouts for company events and occasions using Photoshop.</li>
                         </ul>
-  
-                    <p class="job-info">SURVEY PROGRAMMER</p>
-                    <div class="job-info">
-                        <p>DYNATA</p>
-                        <p>Lapu-Lapu City Cebu, Central Visayas</p>
-                        <p>September 2021 - January 2022</p>
-                    </div>
-                    <h4>Responsibilities:</h4>
-                        <ul>
+                        <p class="bold-title">SURVEY PROGRAMMER</p>
+                        <div class="text-gray-400">
+                            <p>DYNATA</p>
+                            <p>Lapu-Lapu City Cebu, Central Visayas</p>
+                            <p>September 2021 - January 2022</p>
+                        </div>
+                        <h4 class="text-lg font-medium mt-2">Responsibilities:</h4>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Responsible for programming and managing online surveys for market research using specialized tools.</li>
                             <li>Assisting senior developers in testing programs, identifying errors, and ensuring the software runs smoothly.</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-
-                   
-            <div class="vertical-services">
-                    <div class="service">
-                    <h2>PROFESSIONAL LICENSURE EXAMINATION PASSED</h2>
-                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
-                    <div class="work-details">
-                        <ul>
-                            <p>Electronics Technician (ECT) </p>
-                              <li>Passed Date: April 22, 2022</li>
-                            
-                            <p>National Certificate I in Automotive Servicing </p>
-                              <li>Passed Date: December 2017</li>
-
-                            <p>National Certificate II in Automotive Servicing</p>
-                               <li>Passed Date: May 2018</li>
-
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-xl font-semibold">PROFESSIONAL LICENSURE EXAMINATION PASSED</h2>
+                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="licensure-details">EXPLORE WORK</button>
+                    <div class="work-details" id="licensure-details">
+                        <ul class="list-disc pl-5 text-gray-300">
+                            <p class="bold-title">Electronics Technician (ECT)</p>
+                            <li>Passed Date: April 22, 2022</li>
+                            <p class="bold-title">National Certificate I in Automotive Servicing</p>
+                            <li>Passed Date: December 2017</li>
+                            <p class="bold-title">National Certificate II in Automotive Servicing</p>
+                            <li>Passed Date: May 2018</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <div class="vertical-services">
-                    <div class="service">
-                    <h2>SEMINARS AND WORKSHOPS ATTENDED</h2>
-                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
-                    <div class="work-details">
-                        <ul>
-                            <p>PLC AND SCADA Technical Seminar</p>
-                              <li>MFI Polytechnic Institute Inc. (Ortigas Avenue, City of Pasig)</li>
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-xl font-semibold">SEMINARS AND WORKSHOPS ATTENDED</h2>
+                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="seminars-details">EXPLORE WORK</button>
+                    <div class="work-details" id="seminars-details">
+                        <ul class="list-disc pl-5 text-gray-300">
+                            <p class="bold-title">PLC AND SCADA Technical Seminar</p>
+                            <li>MFI Polytechnic Institute Inc. (Ortigas Avenue, City of Pasig)</li>
                             <li>February 23, 2019</li>
-
-                            <p>Introduction to CCTV Systems & AutoCAD Layouts</p>
+                            <p class="bold-title">Introduction to CCTV Systems & AutoCAD Layouts</p>
                             <li>Alison Online Course</li>
                             <li>October 18, 2022</li>
-
-                            <p>IECEP NATIONAL STUDENT SUMMIT 2018</p>
+                            <p class="bold-title">IECEP NATIONAL STUDENT SUMMIT 2018</p>
                             <li>University of the Philippines Diliman, Quezon City</li>
                             <li>November 10, 2018</li>
-
-                            <p>15th IECEP-BSC ANNIVERSARY “Concinnity Adherence to Diversity”</p>
+                            <p class="bold-title">15th IECEP-BSC ANNIVERSARY “Concinnity Adherence to Diversity”</p>
                             <li>Bicol University Polangui Campus</li>
                             <li>November 24-25, 2018</li>
-
-                            <p>14th IECEP-BSC STUDENT SUMMIT “Cynosure: Capacitating Budding Engineers with the 21st Century Standard”</p>
+                            <p class="bold-title">14th IECEP-BSC STUDENT SUMMIT “Cynosure: Capacitating Budding Engineers with the 21st Century Standard”</p>
                             <li>Bicol University Polangui Campus</li>
                             <li>August 28, 2017</li>
-
-                            <p>IECEP Regional Leadership Camp “Strengthening Innovative Leadership”</p>
+                            <p class="bold-title">IECEP Regional Leadership Camp “Strengthening Innovative Leadership”</p>
                             <li>Camarines Sur Polytechnic Colleges</li>
                             <li>July 21, 2018</li>
-
-                            <p>SEMINAR ON FUNDAMENTALS OF ROBOTICS</p>
+                            <p class="bold-title">SEMINAR ON FUNDAMENTALS OF ROBOTICS</p>
                             <li>Alison Online Course</li>
                             <li>October 18, 2022</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="vertical-services">
-                    <div class="service">
-                    <h2>CHARACTER REFERENCE</h2>
-                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
-                    <div class="work-details">
-                        <ul>
-                            <p>JAN ALEC JOSHUA BAHENA, RME</p>
-                              <li>Mechanical Modeller, GHD</li>
-                              <li>Phone: +639321406007</li>
-                            
-                            <p>JUWAN NATHANIEL FLORITA</p>
-                              <li>Plant 3D Modeller, GHD</li>
-                              <li>Phone: 09396309298</li>
-
-                            <p>PRINCESS Z. BUCE, ECT</p>
-                               <li>Designer TA of FiberHome Cebu</li>
-                               <li>Phone: 09491701808</li>
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-xl font-semibold">CHARACTER REFERENCE</h2>
+                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="references-details">EXPLORE WORK</button>
+                    <div class="work-details" id="references-details">
+                        <ul class="list-disc pl-5 text-gray-300">
+                            <p class="bold-title">JAN ALEC JOSHUA BAHENA, RME</p>
+                            <li>Mechanical Modeller, GHD</li>
+                            <li>Phone: +639321406007</li>
+                            <p class="bold-title">JUWAN NATHANIEL FLORITA</p>
+                            <li>Plant 3D Modeller, GHD</li>
+                            <li>Phone: 09396309298</li>
+                            <p class="bold-title">PRINCESS Z. BUCE, ECT</p>
+                            <li>Designer TA of FiberHome Cebu</li>
+                            <li>Phone: 09491701808</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
     <script>
         function toggleDetails(button) {
             const details = button.nextElementSibling;
             const isVisible = details.classList.contains('show');
             
-            // Hide all other open details
             document.querySelectorAll('.work-details.show').forEach(detail => {
                 detail.classList.remove('show');
+                detail.setAttribute('aria-hidden', 'true');
+                detail.previousElementSibling.setAttribute('aria-expanded', 'false');
             });
             
-            // Toggle the clicked details
             if (!isVisible) {
                 details.classList.add('show');
+                details.setAttribute('aria-hidden', 'false');
+                button.setAttribute('aria-expanded', 'true');
             }
         }
     </script>
 </body>
-
 </html>
