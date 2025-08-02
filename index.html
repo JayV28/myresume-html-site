@@ -26,6 +26,9 @@
             border-radius: 50%;
             width: 150px;
             height: 150px;
+            display: block; /* Ensure image behaves as a block element */
+            margin-left: auto; /* Center horizontally */
+            margin-right: auto; /* Center horizontally */
         }
         .sidebar h2 {
             margin: 10px 0;
@@ -178,6 +181,18 @@
             width: 100%;
             border-top: 2px solid #f1c40f; /* Border line above */
         }
+        /* Add border above seminar titles in SEMINARS AND WORKSHOPS ATTENDED */
+        .work-details ul p {
+            font-weight: 900; /* Make seminar titles bold */
+        }
+        .work-details ul p::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            border-top: 2px solid #f1c40f; /* Border line above */
+        }
     </style>
 </head>
 <body>
@@ -204,20 +219,6 @@
                     <li>Microsoft Office Suite Proficiency<div class="progress-bar"><div class="progress" style="width: 70%;"></div></div></li>
                     <li>Google Maps Pro – Mapping & Location Tools<div class="progress-bar"><div class="progress" style="width: 65%;"></div></div></li>
                     <li>CCTV Layout Design (AutoCAD)<div class="progress-bar"><div class="progress" style="width: 45%;"></div></div></li>
-              <section class="mb-6">     
-                <h4>CHARACTER REFERENCE</h4>
-                    <p>JAN ALEC JOSHUA BAHENA, RME</p>
-                    <p>Mechanical Modeller, GHD</p>
-                    <p>Phone: +639321406007</p>
-
-                    <p>JUWAN NATHANIEL FLORITA</p>
-                    <p>Plant 3D Modeller, GHD</p>
-                    <p class="mt-4">Phone: 09396309298</p>
-
-                    <p>PRINCESS Z. BUCE, ECT</p>
-                    <p>Designer TA of FiberHome Cebu</p>
-                    <p>Phone: 09491701808</p>
-                </section> 
                 </ul>
             </div>
         </div>
@@ -281,15 +282,82 @@
             </div>
 
                    
-                <div class="horizontal-services">
+            <div class="vertical-services">
                     <div class="service">
                     <h2>PROFESSIONAL LICENSURE EXAMINATION PASSED</h2>
                     <button onclick="toggleDetails(this)">EXPLORE WORK</button>
                     <div class="work-details">
-                        <h4>Key Responsibilities:</h4>
                         <ul>
-                            <li>Responsible for programming and managing online surveys for market research using specialized tools.</li>
-                            <li>Assisting senior developers in testing programs, identifying errors, and ensuring the software runs smoothly.</li>
+                            <p>Electronics Technician (ECT) </p>
+                              <li>Passed Date: April 22, 2022</li>
+                            
+                            <p>National Certificate I in Automotive Servicing </p>
+                              <li>Passed Date: December 2017</li>
+
+                            <p>National Certificate II in Automotive Servicing</p>
+                               <li>Passed Date: May 2018</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vertical-services">
+                    <div class="service">
+                    <h2>SEMINARS AND WORKSHOPS ATTENDED</h2>
+                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
+                    <div class="work-details">
+                        <ul>
+                            <p>PLC AND SCADA Technical Seminar</p>
+                              <li>MFI Polytechnic Institute Inc. (Ortigas Avenue, City of Pasig)</li>
+                            <li>February 23, 2019</li>
+
+                            <p>Introduction to CCTV Systems & AutoCAD Layouts</p>
+                            <li>Alison Online Course</li>
+                            <li>October 18, 2022</li>
+
+                            <p>IECEP NATIONAL STUDENT SUMMIT 2018</p>
+                            <li>University of the Philippines Diliman, Quezon City</li>
+                            <li>November 10, 2018</li>
+
+                            <p>15th IECEP-BSC ANNIVERSARY “Concinnity Adherence to Diversity”</p>
+                            <li>Bicol University Polangui Campus</li>
+                            <li>November 24-25, 2018</li>
+
+                            <p>14th IECEP-BSC STUDENT SUMMIT “Cynosure: Capacitating Budding Engineers with the 21st Century Standard”</p>
+                            <li>Bicol University Polangui Campus</li>
+                            <li>August 28, 2017</li>
+
+                            <p>IECEP Regional Leadership Camp “Strengthening Innovative Leadership”</p>
+                            <li>Camarines Sur Polytechnic Colleges</li>
+                            <li>July 21, 2018</li>
+
+                            <p>SEMINAR ON FUNDAMENTALS OF ROBOTICS</p>
+                            <li>Alison Online Course</li>
+                            <li>October 18, 2022</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="vertical-services">
+                    <div class="service">
+                    <h2>CHARACTER REFERENCE</h2>
+                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
+                    <div class="work-details">
+                        <ul>
+                            <p>JAN ALEC JOSHUA BAHENA, RME</p>
+                              <li>Mechanical Modeller, GHD</li>
+                              <li>Phone: +639321406007</li>
+                            
+                            <p>JUWAN NATHANIEL FLORITA</p>
+                              <li>Plant 3D Modeller, GHD</li>
+                              <li>Phone: 09396309298</li>
+
+                            <p>PRINCESS Z. BUCE, ECT</p>
+                               <li>Designer TA of FiberHome Cebu</li>
+                               <li>Phone: 09491701808</li>
                         </ul>
                     </div>
                 </div>
