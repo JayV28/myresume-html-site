@@ -32,6 +32,7 @@
         }
         .sidebar p {
             margin: 5px 0;
+            word-spacing: 1px;
             color: #ccc;
         }
         .skills ul {
@@ -56,6 +57,12 @@
             width: 75%;
             padding: 20px;
         }
+        .header-stats-container {
+            background-color: #f1c40f; /* Yellow background */
+            padding: 10px; /* Add padding for better appearance */
+            border-radius: 5px; /* Optional: rounded corners */
+            margin-bottom: 20px; /* Add space between this section and the next */
+        }
         .header {
             text-align: center;
             padding: 50px 0;
@@ -65,6 +72,7 @@
         .header h1 {
             font-size: 2.5em;
             margin: 0;
+            color: #000000; /* Black text for header */
         }
         .header p {
             font-size: 1.2em;
@@ -101,16 +109,74 @@
             display: flex;
             justify-content: space-around;
             margin: 20px 0;
-            color: #ccc;
+            color: #000000; /* Black text for stats */
         }
         .work-details {
             display: none;
-            margin-top: 15px;
+            margin: 0 0 10px 0;
+            margin-top: 10px;
             text-align: left;
+            color: #FFFAFA;
+        }
+        .work-details1 {
             color: #ccc;
         }
         .work-details.show {
             display: block;
+        }
+        .vertical-services {
+            width: 100%;
+        }
+        .vertical-services .service {
+            margin-bottom: 30px;
+        }
+        /* Adjust spacing and boldness */
+        .work-details p {
+            margin-bottom: 0; /* Remove space between all paragraphs */
+            position: relative; /* Ensure proper positioning for border */
+        }
+        .work-details p:first-child {
+            font-weight: 900; /* Make "PROJECT COORDINATOR" extra bold */
+        }
+        .work-details p:first-child::before {
+            content: "";
+            position: absolute;
+            top: -10px; /* Place border above the text */
+            left: 0;
+            width: 100%;
+            border-top: 2px solid #f1c40f; /* Border line above */
+        }
+        /* Ensure no extra space between specific job details */
+        .work-details .job-info p {
+            margin-bottom: 0;
+            display: inline; /* Align text on the same line */
+        }
+        .work-details .job-info p::after {
+            content: "\A"; /* Add a line break after each paragraph */
+            white-space: pre; /* Preserve the line break */
+        }
+        /* Make additional job titles bold and add border */
+        .work-details p:nth-child(5) {
+            font-weight: 900; /* Make "SYSTEM ENGINEER" extra bold */
+        }
+        .work-details p:nth-child(5)::before {
+            content: "";
+            position: absolute;
+            top: -10px; /* Place border above the text */
+            left: 0;
+            width: 100%;
+            border-top: 2px solid #f1c40f; /* Border line above */
+        }
+        .work-details p:nth-child(9) {
+            font-weight: 900; /* Make "SURVEY PROGRAMMER" extra bold */
+        }
+        .work-details p:nth-child(9)::before {
+            content: "";
+            position: absolute;
+            top: -10px; /* Place border above the text */
+            left: 0;
+            width: 100%;
+            border-top: 2px solid #f1c40f; /* Border line above */
         }
     </style>
 </head>
@@ -119,10 +185,10 @@
         <div class="sidebar">
             <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture">
             <h2>VIC JAY BANCE, ECT</h2>
-            <p>ELECTRONICS TECHNICIAN PROFESSIONAL</p>
             <p><strong>Address:</strong>Little Flower Dormitel, La Guardia, Lahug</p>
             <p><strong>City:</strong> Cebu City</p>
             <p><strong>Age:</strong> 27</p>
+            <p><strong>Phone:</strong> 09391462903</p>
             <div class="skills">
                 <ul>
                     <h3>SKILLS</h3>
@@ -140,77 +206,90 @@
                     <li>CCTV Layout Design (AutoCAD)<div class="progress-bar"><div class="progress" style="width: 45%;"></div></div></li>
               <section class="mb-6">     
                 <h4>CHARACTER REFERENCE</h4>
-                    <p">JAN ALEC JOSHUA BAHENA, RME</p>
+                    <p>JAN ALEC JOSHUA BAHENA, RME</p>
                     <p>Mechanical Modeller, GHD</p>
                     <p>Phone: +639321406007</p>
 
-                    <p">JUWAN NATHANIEL FLORITA</p>
+                    <p>JUWAN NATHANIEL FLORITA</p>
                     <p>Plant 3D Modeller, GHD</p>
                     <p class="mt-4">Phone: 09396309298</p>
 
-                    <p">PRINCESS Z. BUCE, ECT</p>
+                    <p>PRINCESS Z. BUCE, ECT</p>
                     <p>Designer TA of FiberHome Cebu</p>
                     <p>Phone: 09491701808</p>
                 </section> 
                 </ul>
             </div>
-           
-
         </div>
         <div class="main-content">
-            <div class="header">
-                <h1>Discover my Amazing works and Achievements!</h1>
+            <div class="header-stats-container">
+                <div class="header">
+                    <h1>Discover my Amazing works and Achievements!</h1>
+                </div>
+                <div class="stats">
+                    <p>2+ Years Experience</p>
+                    <p>100+ Completed Projects</p>  
+                    <p>20+ Passed and Certificate</p>
+                </div>
             </div>
-            <div class="stats">
-                <p>2+ Years Experience</p>
-                <p>100+ Completed Projects</p>
-                <p>20+ Passed and Certificate</p>
-            </div>
-            <div class="services">
-                <div class="service">
-                    <h3>PROJECT COORDINATOR/ TA DESIGNER</h3>
-                    <p class="text-gray-750">FIBERHOME TELECOMMUNICATION TECHNOLOGIES CO., LTD.</p>
-                    <p class="text-gray-750">8W49+R5R, Sergio Osmeña Jr Blvd, Cebu City, 6000 Cebu</p>    
-                    <p class="text-gray-750">JANUARY 2024- PRESENT</p>  
-                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
-                    <div class="work-details">
-                        <h4>Key Responsibilities:</h4>
+            <div class="vertical-services">
+               <div class="service">
+                <h2>WORK EXPERIENCE</h2>
+                <button onclick="toggleDetails(this)">EXPLORE WORK</button>
+                <div class="work-details">
+                    <p>PROJECT COORDINATOR/ TA DESIGNER</p>
+                    <div class="job-info">
+                        <p>Fiberhome Telecommunication Technologies Co., Ltd.</p>
+                        <p>8W49+R5R, Sergio Osmeña Jr Blvd, Cebu City, 6000 Cebu</p>
+                        <p>January 2024 - Present</p>
+                    </div>
+                    <h4>Responsibilities:</h4>
                         <ul>
                             <li>Updating the final As-Built plan using AutoCAD 2D.</li>
                             <li>Revising designs based on the final implementation of the project.</li>
                             <li>Documented the project site, including As-Built Plans, Network Configuration, PPGIS, PSGC, TA attachments, and AutoCAD Map 3D files with layers.</li>
                             <li>Creating advanced files to streamline workflow and ensure targets are met by the end of the month.</li>
                         </ul>
+
+                        <p class="job-info">SYSTEM ENGINEER</p>
+                        <div class="job-info">
+                        <p>Sky Plant Technology Cebu Inc.</p>
+                        <p>Osmeña Blvd, Cebu City</p>
+                        <p>March 2023 - December 2023</p>
                     </div>
-                </div>
-                <div class="service">
-                    <h3>SYSTEM ENGINEER</h3>
-                    <p class="text-gray-750">SKY PLANT TECHNOLOGY CEBU INC.</p>
-                    <p class="text-gray-750">Metrobank Plaza Building, 9th Floor, Unit 901, Osmeña Blvd, Cebu City, 6000 Cebu</p>    
-                    <p class="text-gray-750">MARCH 2023- DECEMBER 2023</p>  
-                    <button onclick="toggleDetails(this)">EXPLORE WORK</button>
-                    <div class="work-details">
-                        <h4>Key Responsibilities:</h4>
+                    <h4>Responsibilities:</h4>
                         <ul>
                             <li>Maintained and troubleshot servers and employees' computers when issues or errors occurred.</li>
                             <li>Designed various types of valves and pipe fittings using AVEVA E3D (Catalogue).</li>
                             <li>Utilized AutoCAD Plant 3D, AutoCAD 2D, and AutoCAD 3D for design purposes.</li>
                             <li>Designed tarpaulin layouts for company events and occasions using Photoshop.</li>
                         </ul>
+  
+                    <p class="job-info">SURVEY PROGRAMMER</p>
+                    <div class="job-info">
+                        <p>DYNATA</p>
+                        <p>Lapu-Lapu City Cebu, Central Visayas</p>
+                        <p>September 2021 - January 2022</p>
+                    </div>
+                    <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Responsible for programming and managing online surveys for market research using specialized tools.</li>
+                            <li>Assisting senior developers in testing programs, identifying errors, and ensuring the software runs smoothly.</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="service">
-                    <h3>SURVEY PROGRAMMER</h3>
-                    <p class="text-gray-750">DYNATA</p>
-                    <p class="text-gray-750">PIPC Bldg, 7 MEPZ 2 Rd, Lapu-Lapu, 6015 Cebu</p>    
-                    <p class="text-gray-750">SEPTEMBER 2021- JANUARY 2022</p>  
+            </div>
+
+                   
+                <div class="horizontal-services">
+                    <div class="service">
+                    <h2>PROFESSIONAL LICENSURE EXAMINATION PASSED</h2>
                     <button onclick="toggleDetails(this)">EXPLORE WORK</button>
                     <div class="work-details">
                         <h4>Key Responsibilities:</h4>
                         <ul>
                             <li>Responsible for programming and managing online surveys for market research using specialized tools.</li>
                             <li>Assisting senior developers in testing programs, identifying errors, and ensuring the software runs smoothly.</li>
-                          
                         </ul>
                     </div>
                 </div>
@@ -234,4 +313,5 @@
         }
     </script>
 </body>
+
 </html>
