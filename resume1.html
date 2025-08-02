@@ -5,88 +5,389 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Resume</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --gradient-primary: linear-gradient(120deg, #0a192f 0%, #112240 100%);
+            --gradient-accent: linear-gradient(90deg, #64ffda 0%, #38b2ac 100%);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.15);
+            --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+        }
+
         .progress-bar {
             width: 100%;
-            background-color: #4a5568;
-            border-radius: 0.375rem;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
             overflow: hidden;
+            position: relative;
         }
+
         .progress {
-            height: 0.5rem;
-            background-color: #f1c40f;
-            border-radius: 0.375rem;
-            transition: width 0.3s ease-in-out;
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            transition: var(--transition-slow);
+            position: relative;
         }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.15) 50%, 
+                transparent 100%);
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
         .work-details {
             display: none;
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transition: var(--transition-slow);
             max-height: 0;
             opacity: 0;
             overflow: hidden;
+            transform: translateY(-10px);
+            background: rgba(17, 34, 64, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
         }
+
         .work-details.show {
             display: block;
-            max-height: 1000px;
+            max-height: none;
             opacity: 1;
+            transform: translateY(0);
+            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .work-details p.bold-title {
-            font-weight: 900;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             position: relative;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            padding-bottom: 0.75rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
+
         .work-details p.bold-title::before {
             content: "";
             position: absolute;
-            top: -0.5rem;
+            bottom: 0;
             left: 0;
             width: 100%;
-            border-top: 2px solid #f1c40f;
+            height: 1px;
+            background: var(--gradient-accent);
+            opacity: 0.5;
+        }
+
+        .work-details p.bold-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition-slow);
+        }
+
+        .work-details p.bold-title:hover::after {
+            width: 100px;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .contact-info:hover {
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .contact-info i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            transition: var(--transition-fast);
+        }
+
+        .contact-info:hover i {
+            transform: scale(1.1);
+        }
+
+        .skill-item {
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .skill-header span:first-child {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .skill-header span:last-child {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hover-card {
+            transition: var(--transition-slow);
+            background: var(--secondary-color);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition-slow);
+        }
+
+        .hover-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hover-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(100, 255, 218, 0.2);
+        }
+        .section-title {
+            background: linear-gradient(90deg, #ffd700, #daa520);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        .corporate-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
-    <div class="container mx-auto flex flex-col md:flex-row max-w-6xl p-4">
-        <aside class="md:w-1/4 p-6 bg-gray-800 rounded-lg mb-4 md:mb-0 md:mr-4">
-            <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture" class="rounded-full w-32 h-32 mx-auto" loading="lazy">
-            <h2 class="text-xl font-bold mt-4 text-center">VIC JAY BANCE, ECT</h2>
-            <p class="text-gray-400 text-sm mt-2"><strong>Address:</strong> Little Flower Dormitel, La Guardia, Lahug</p>
-            <p class="text-gray-400 text-sm"><strong>City:</strong> Cebu City</p>
-            <p class="text-gray-400 text-sm"><strong>Age:</strong> 27</p>
-            <p class="text-gray-400 text-sm"><strong>Phone:</strong> 09391462903</p>
+<body class="text-white font-sans min-h-screen">
+    <div class="fixed inset-0 z-0">
+        <div class="absolute inset-0 bg-[#0a192f]"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-[#112240] via-[#0a192f] to-[#020c1b] opacity-80"></div>
+        <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 50%)"></div>
+    </div>
+    
+    <div class="container mx-auto flex flex-col md:flex-row max-w-7xl p-8 relative z-10">
+        <aside class="md:w-1/4 p-8 bg-[#112240] rounded-xl mb-4 md:mb-0 md:mr-8 border border-[#233554] shadow-xl backdrop-blur-xl">
+            <div class="relative group">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-[#64ffda] to-[#38b2ac] rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200"></div>
+                <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture" class="relative rounded-full w-32 h-32 mx-auto object-cover" loading="lazy">
+            </div>
+            <h2 class="text-2xl font-bold mt-4 text-center text-yellow-500">VIC JAY BANCE, ECT</h2>
+            <div class="mt-4 space-y-2">
+                <p class="contact-info text-gray-300">
+                    <i class="fas fa-map-marker-alt text-yellow-500 w-6"></i>
+                    Little Flower Dormitel, La Guardia, Lahug, Cebu City
+                </p>
+                <p class="contact-info text-gray-300">
+                    <i class="fas fa-birthday-cake text-yellow-500 w-6"></i>
+                    27 years old
+                </p>
+                <p class="contact-info text-gray-300">
+                    <i class="fas fa-phone text-yellow-500 w-6"></i>
+                    09391462903
+                </p>
+                <p class="contact-info text-gray-300">
+                    <i class="fas fa-envelope text-yellow-500 w-6"></i>
+                    bancevicjay@gmail.com
+                </p>
+            </div>
             <div class="mt-6">
-                <h3 class="text-lg font-semibold">SKILLS</h3>
-                <ul class="mt-2 space-y-2">
-                    <li>AutoCAD – 2D Drafting<div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></li>
-                    <li>AutoCAD – 3D Modeling<div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
-                    <li>AutoCAD Map 3D – GIS & Mapping<div class="progress-bar"><div class="progress" style="width: 50%;"></div></div></li>
-                    <li>AVEVA E3D – Plant Design Modeling<div class="progress-bar"><div class="progress" style="width: 75%;"></div></div></li>
-                    <li>BricsCAD – CAD Drafting & Modeling<div class="progress-bar"><div class="progress" style="width: 65%;"></div></div></li>
-                    <li>Software Troubleshooting<div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
-                    <li>Hardware Troubleshooting<div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
-                    <li>Software Installation & Setup<div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
-                    <li>Remote IT Support (AnyDesk)<div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></li>
-                    <li>Microsoft Office Suite Proficiency<div class="progress-bar"><div class="progress" style="width: 70%;"></div></div></li>
-                    <li>Google Maps Pro – Mapping & Location Tools<div class="progress-bar"><div class="progress" style="width: 65%;"></div></div></li>
-                    <li>CCTV Layout Design (AutoCAD)<div class="progress-bar"><div class="progress" style="width: 45%;"></div></div></li>
-                </ul>
+                <h3 class="relative inline-block text-lg font-semibold text-[#64ffda] mb-6 pb-2">
+                    <span class="relative z-10">TECHNICAL EXPERTISE</span>
+                    <div class="absolute bottom-0 left-0 w-full h-[2px] bg-[#64ffda] opacity-20"></div>
+                    <div class="absolute bottom-0 left-0 w-1/4 h-[2px] bg-[#64ffda]"></div>
+                </h3>
+                <div class="space-y-6">
+                    <div class="skill-category">
+                        <h4 class="text-sm font-semibold text-[#8892b0] mb-3 flex items-center">
+                            <i class="fas fa-drafting-compass mr-2 text-[#64ffda]"></i>
+                            CAD & Design</h4>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">AutoCAD – 2D Drafting</span>
+                                <span class="text-xs text-yellow-500">Expert</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">AutoCAD – 3D Modeling</span>
+                                <span class="text-xs text-yellow-500">Advanced</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">AVEVA E3D – Plant Design</span>
+                                <span class="text-xs text-yellow-500">Proficient</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category mb-4">
+                        <h4 class="text-sm font-semibold text-gray-400 mb-2">IT Support & Systems</h4>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">Software & Hardware Troubleshooting</span>
+                                <span class="text-xs text-yellow-500">Advanced</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">Remote IT Support (AnyDesk)</span>
+                                <span class="text-xs text-yellow-500">Expert</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4 class="text-sm font-semibold text-gray-400 mb-2">Additional Skills</h4>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">Microsoft Office Suite</span>
+                                <span class="text-xs text-yellow-500">Proficient</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="text-sm">GIS & Mapping Tools</span>
+                                <span class="text-xs text-yellow-500">Intermediate</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </aside>
         <main class="md:w-3/4 p-6">
-            <div class="bg-yellow-500 rounded-lg p-6 mb-6">
-                <header class="text-center bg-cover bg-center py-12" style="background-image: url('https://via.placeholder.com/1200x300')">
-                    <h1 class="text-3xl font-bold text-black">Discover my Amazing works and Achievements!</h1>
+            <div class="corporate-card rounded-xl p-10 mb-8">
+                <header class="text-center relative">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-gold to-yellow-500"></div>
+                    <h1 class="text-5xl font-bold mb-4 section-title">Professional Portfolio</h1>
+                    <p class="text-xl text-gray-300 mb-8">CAD Designer & IT Systems Specialist</p>
+                    <div class="w-16 h-1 mx-auto bg-gradient-to-r from-gold to-yellow-500 mb-8"></div>
                 </header>
-                <div class="flex justify-around mt-4 text-black">
-                    <p>2+ Years Experience</p>
-                    <p>100+ Completed Projects</p>
-                    <p>20+ Passed and Certificate</p>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="text-center p-6 corporate-card rounded-xl transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl font-bold text-gold mb-2">2+</div>
+                        <p class="text-gray-300 text-lg">Years Experience</p>
+                    </div>
+                    <div class="text-center p-6 corporate-card rounded-xl transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl font-bold text-gold mb-2">100+</div>
+                        <p class="text-gray-300 text-lg">Completed Projects</p>
+                    </div>
+                    <div class="text-center p-6 corporate-card rounded-xl transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl font-bold text-gold mb-2">5+</div>
+                        <p class="text-gray-300 text-lg">Certifications</p>
+                    </div>
                 </div>
             </div>
             <section class="space-y-6">
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <h2 class="text-xl font-semibold">WORK EXPERIENCE</h2>
-                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="work-experience-details">EXPLORE WORK</button>
+                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                    <h2 class="text-2xl font-semibold flex items-center mb-6">
+                        <div class="flex items-center">
+                            <span class="text-[#64ffda] font-mono text-sm mr-2">01.</span>
+                            <span class="text-[#ccd6f6]">Work Experience</span>
+                        </div>
+                        <div class="flex-grow ml-4 h-[1px] bg-[#233554]"></div>
+                    </h2>
+                    <button onclick="toggleDetails(this)" 
+                            class="group relative px-8 py-3 mt-4 overflow-hidden rounded-lg bg-[#112240] text-[#64ffda] font-medium shadow-inner border border-[#64ffda] hover:bg-[#233554] transition-all duration-300"
+                            aria-expanded="false" 
+                            aria-controls="work-experience-details">
+                        <div class="absolute inset-0 w-3 bg-[#64ffda] transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
+                        <div class="relative flex items-center justify-between">
+                            <span class="tracking-wide text-sm uppercase">View Details</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </div>
+                    </button>
                     <div class="work-details" id="work-experience-details">
                         <p class="bold-title">PROJECT COORDINATOR/ TA DESIGNER</p>
                         <div class="text-gray-400">
@@ -127,61 +428,126 @@
                         </ul>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <h2 class="text-xl font-semibold">PROFESSIONAL LICENSURE EXAMINATION PASSED</h2>
-                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="licensure-details">EXPLORE WORK</button>
+                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                    <h2 class="text-2xl font-semibold flex items-center mb-6">
+                        <div class="flex items-center">
+                            <span class="text-[#64ffda] font-mono text-sm mr-2">02.</span>
+                            <span class="text-[#ccd6f6]">Professional Licensure Examination Passed</span>
+                        </div>
+                        <div class="flex-grow ml-4 h-[1px] bg-[#233554]"></div>
+                    </h2>
+                    <button onclick="toggleDetails(this)" 
+                            class="group relative px-8 py-3 mt-4 overflow-hidden rounded-lg bg-[#112240] text-[#64ffda] font-medium shadow-inner border border-[#64ffda] hover:bg-[#233554] transition-all duration-300"
+                            aria-expanded="false" 
+                            aria-controls="licensure-details">
+                        <div class="absolute inset-0 w-3 bg-[#64ffda] transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
+                        <div class="relative flex items-center justify-between">
+                            <span class="tracking-wide text-sm uppercase">View Details</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </div>
+                    </button>
                     <div class="work-details" id="licensure-details">
+                        <p class="bold-title">Electronics Technician (ECT)</p>
                         <ul class="list-disc pl-5 text-gray-300">
-                            <p class="bold-title">Electronics Technician (ECT)</p>
                             <li>Passed Date: April 22, 2022</li>
-                            <p class="bold-title">National Certificate I in Automotive Servicing</p>
+                        </ul>
+                        <p class="bold-title">National Certificate I in Automotive Servicing</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Passed Date: December 2017</li>
-                            <p class="bold-title">National Certificate II in Automotive Servicing</p>
+                        </ul>
+                        <p class="bold-title">National Certificate II in Automotive Servicing</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Passed Date: May 2018</li>
                         </ul>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <h2 class="text-xl font-semibold">SEMINARS AND WORKSHOPS ATTENDED</h2>
-                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="seminars-details">EXPLORE WORK</button>
+                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                    <h2 class="text-2xl font-semibold flex items-center mb-6">
+                        <div class="flex items-center">
+                            <span class="text-[#64ffda] font-mono text-sm mr-2">03.</span>
+                            <span class="text-[#ccd6f6]">Seminars and Workshops Attended</span>
+                        </div>
+                        <div class="flex-grow ml-4 h-[1px] bg-[#233554]"></div>
+                    </h2>
+                    <button onclick="toggleDetails(this)" 
+                            class="group relative px-8 py-3 mt-4 overflow-hidden rounded-lg bg-[#112240] text-[#64ffda] font-medium shadow-inner border border-[#64ffda] hover:bg-[#233554] transition-all duration-300"
+                            aria-expanded="false" 
+                            aria-controls="seminars-details">
+                        <div class="absolute inset-0 w-3 bg-[#64ffda] transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
+                        <div class="relative flex items-center justify-between">
+                            <span class="tracking-wide text-sm uppercase">View Details</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </div>
+                    </button>
                     <div class="work-details" id="seminars-details">
+                        <p class="bold-title">PLC AND SCADA Technical Seminar</p>
                         <ul class="list-disc pl-5 text-gray-300">
-                            <p class="bold-title">PLC AND SCADA Technical Seminar</p>
                             <li>MFI Polytechnic Institute Inc. (Ortigas Avenue, City of Pasig)</li>
                             <li>February 23, 2019</li>
-                            <p class="bold-title">Introduction to CCTV Systems & AutoCAD Layouts</p>
+                        </ul>
+                        <p class="bold-title">Introduction to CCTV Systems & AutoCAD Layouts</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Alison Online Course</li>
                             <li>October 18, 2022</li>
-                            <p class="bold-title">IECEP NATIONAL STUDENT SUMMIT 2018</p>
+                        </ul>
+                        <p class="bold-title">IECEP NATIONAL STUDENT SUMMIT 2018</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>University of the Philippines Diliman, Quezon City</li>
                             <li>November 10, 2018</li>
-                            <p class="bold-title">15th IECEP-BSC ANNIVERSARY “Concinnity Adherence to Diversity”</p>
+                        </ul>
+                        <p class="bold-title">15th IECEP-BSC ANNIVERSARY “Concinnity Adherence to Diversity”</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Bicol University Polangui Campus</li>
                             <li>November 24-25, 2018</li>
-                            <p class="bold-title">14th IECEP-BSC STUDENT SUMMIT “Cynosure: Capacitating Budding Engineers with the 21st Century Standard”</p>
+                        </ul>
+                        <p class="bold-title">14th IECEP-BSC STUDENT SUMMIT “Cynosure: Capacitating Budding Engineers with the 21st Century Standard”</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Bicol University Polangui Campus</li>
                             <li>August 28, 2017</li>
-                            <p class="bold-title">IECEP Regional Leadership Camp “Strengthening Innovative Leadership”</p>
+                        </ul>
+                        <p class="bold-title">IECEP Regional Leadership Camp “Strengthening Innovative Leadership”</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Camarines Sur Polytechnic Colleges</li>
                             <li>July 21, 2018</li>
-                            <p class="bold-title">SEMINAR ON FUNDAMENTALS OF ROBOTICS</p>
+                        </ul>
+                        <p class="bold-title">SEMINAR ON FUNDAMENTALS OF ROBOTICS</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Alison Online Course</li>
                             <li>October 18, 2022</li>
                         </ul>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <h2 class="text-xl font-semibold">CHARACTER REFERENCE</h2>
-                    <button onclick="toggleDetails(this)" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400 transition mt-2" aria-expanded="false" aria-controls="references-details">EXPLORE WORK</button>
+                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                    <h2 class="text-2xl font-semibold flex items-center mb-6">
+                        <div class="flex items-center">
+                            <span class="text-[#64ffda] font-mono text-sm mr-2">04.</span>
+                            <span class="text-[#ccd6f6]">Character Reference</span>
+                        </div>
+                        <div class="flex-grow ml-4 h-[1px] bg-[#233554]"></div>
+                    </h2>
+                    <button onclick="toggleDetails(this)" 
+                            class="group relative px-8 py-3 mt-4 overflow-hidden rounded-lg bg-[#112240] text-[#64ffda] font-medium shadow-inner border border-[#64ffda] hover:bg-[#233554] transition-all duration-300"
+                            aria-expanded="false" 
+                            aria-controls="references-details">
+                        <div class="absolute inset-0 w-3 bg-[#64ffda] transition-all duration-[250ms] ease-out group-hover:w-full opacity-10"></div>
+                        <div class="relative flex items-center justify-between">
+                            <span class="tracking-wide text-sm uppercase">View Details</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        </div>
+                    </button>
                     <div class="work-details" id="references-details">
+                        <p class="bold-title">JAN ALEC JOSHUA BAHENA, RME</p>
                         <ul class="list-disc pl-5 text-gray-300">
-                            <p class="bold-title">JAN ALEC JOSHUA BAHENA, RME</p>
                             <li>Mechanical Modeller, GHD</li>
                             <li>Phone: +639321406007</li>
-                            <p class="bold-title">JUWAN NATHANIEL FLORITA</p>
+                        </ul>
+                        <p class="bold-title">JUWAN NATHANIEL FLORITA</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Plant 3D Modeller, GHD</li>
                             <li>Phone: 09396309298</li>
-                            <p class="bold-title">PRINCESS Z. BUCE, ECT</p>
+                        </ul>
+                        <p class="bold-title">PRINCESS Z. BUCE, ECT</p>
+                        <ul class="list-disc pl-5 text-gray-300">
                             <li>Designer TA of FiberHome Cebu</li>
                             <li>Phone: 09491701808</li>
                         </ul>
