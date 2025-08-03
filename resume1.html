@@ -124,6 +124,7 @@
         .work-details p.bold-title:hover::after {
             width: 100px;
         }
+
         .contact-info {
             display: flex;
             align-items: center;
@@ -214,17 +215,130 @@
             box-shadow: var(--shadow-lg);
             border-color: rgba(100, 255, 218, 0.2);
         }
+
         .section-title {
             background: linear-gradient(90deg, #ffd700, #daa520);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
         }
+
         .corporate-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .fixed.bottom-8.right-8 {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .p-10 {
+                padding: 1.5rem;
+            }
+
+            .p-8 {
+                padding: 1rem;
+            }
+
+            .p-6 {
+                padding: 1rem;
+            }
+
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+
+            .text-4xl {
+                font-size: 1.875rem;
+            }
+
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+
+            .w-32.h-32 {
+                width: 6rem;
+                height: 6rem;
+            }
+
+            .work-details {
+                padding: 0.75rem;
+            }
+
+            .contact-info i {
+                font-size: 0.9rem;
+            }
+
+            .skill-header {
+                font-size: 0.8rem;
+            }
+
+            .skill-header span:last-child {
+                font-size: 0.7rem;
+            }
+
+            .px-8.py-3 {
+                padding: 0.5rem 1rem;
+            }
+
+            .w-24.h-1 {
+                width: 4rem;
+            }
+
+            .w-16.h-1 {
+                width: 3rem;
+            }
+
+            .text-xl {
+                font-size: 1rem;
+            }
+
+            .text-lg {
+                font-size: 0.875rem;
+            }
+
+            .text-sm {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .text-5xl {
+                font-size: 2rem;
+            }
+
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+
+            .text-xl {
+                font-size: 0.875rem;
+            }
+
+            .px-8.py-3 {
+                padding: 0.5rem 1rem;
+            }
+
+            .w-24.h-1 {
+                width: 3rem;
+            }
+
+            .w-16.h-1 {
+                width: 2rem;
+            }
         }
     </style>
 </head>
@@ -265,7 +379,6 @@
                     <i class="fas fa-envelope text-yellow-500 w-6" aria-hidden="true"></i>
                     <a href="mailto:bancevicjay@gmail.com" class="hover:underline focus:outline-none" aria-label="Email Vic Jay Bance">bancevicjay@gmail.com</a>
                 </p>
-         
             </div>
             <div class="mt-6">
                 <h3 class="relative inline-block text-lg font-semibold text-[#64ffda] mb-6 pb-2">
@@ -361,7 +474,7 @@
                     <p class="text-xl text-gray-300 mb-8">CAD Designer & IT Systems Specialist</p>
                     <div class="w-16 h-1 mx-auto bg-gradient-to-r from-gold to-yellow-500 mb-8"></div>
                 </header>
-                <div class="grid grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     <div class="text-center p-6 corporate-card rounded-xl transform hover:scale-105 transition-all duration-300">
                         <div class="text-4xl font-bold text-gold mb-2">2+</div>
                         <p class="text-gray-300 text-lg">Years Experience</p>
