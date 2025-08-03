@@ -239,26 +239,33 @@
         <aside class="md:w-1/4 p-8 bg-[#112240] rounded-xl mb-4 md:mb-0 md:mr-8 border border-[#233554] shadow-xl backdrop-blur-xl">
             <div class="relative group">
                 <div class="absolute -inset-0.5 bg-gradient-to-r from-[#64ffda] to-[#38b2ac] rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200"></div>
-                <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture" class="relative rounded-full w-32 h-32 mx-auto object-cover" loading="lazy">
+                <img src="https://jayv28.github.io/my-resume-site/a--.jpg" alt="Profile Picture of Vic Jay Bance" class="relative rounded-full w-32 h-32 mx-auto object-cover" loading="lazy">
             </div>
             <h2 class="text-2xl font-bold mt-4 text-center text-yellow-500">VIC JAY BANCE, ECT</h2>
+            <div class="mt-2 mb-4 text-center">
+                <span class="inline-block px-4 py-2 rounded-lg bg-[#233554] text-[#64ffda] font-semibold shadow hover:shadow-lg transition">Electronics Technician | CAD Designer | IT Specialist</span>
+            </div>
+            <div class="mb-4 p-4 rounded-lg bg-[#233554] text-gray-300 text-sm shadow-md">
+                <p class="mb-2"><span class="font-bold text-[#64ffda]">Profile:</span> Detail-oriented and innovative CAD designer and IT systems specialist with 2+ years of experience in telecommunications and plant design. Adept at troubleshooting, project coordination, and delivering high-quality technical solutions. Passionate about continuous learning and collaboration.</p>
+            </div>
             <div class="mt-4 space-y-2">
                 <p class="contact-info text-gray-300">
-                    <i class="fas fa-map-marker-alt text-yellow-500 w-6"></i>
-                    Little Flower Dormitel, La Guardia, Lahug, Cebu City
+                    <i class="fas fa-map-marker-alt text-yellow-500 w-6" aria-hidden="true"></i>
+                    <span>Little Flower Dormitel, La Guardia, Lahug, Cebu City</span>
                 </p>
                 <p class="contact-info text-gray-300">
-                    <i class="fas fa-birthday-cake text-yellow-500 w-6"></i>
-                    27 years old
+                    <i class="fas fa-birthday-cake text-yellow-500 w-6" aria-hidden="true"></i>
+                    <span>27 years old</span>
                 </p>
                 <p class="contact-info text-gray-300">
-                    <i class="fas fa-phone text-yellow-500 w-6"></i>
-                    09391462903
+                    <i class="fas fa-phone text-yellow-500 w-6" aria-hidden="true"></i>
+                    <a href="tel:09391462903" class="hover:underline focus:outline-none" aria-label="Call Vic Jay Bance">09391462903</a>
                 </p>
                 <p class="contact-info text-gray-300">
-                    <i class="fas fa-envelope text-yellow-500 w-6"></i>
-                    bancevicjay@gmail.com
+                    <i class="fas fa-envelope text-yellow-500 w-6" aria-hidden="true"></i>
+                    <a href="mailto:bancevicjay@gmail.com" class="hover:underline focus:outline-none" aria-label="Email Vic Jay Bance">bancevicjay@gmail.com</a>
                 </p>
+         
             </div>
             <div class="mt-6">
                 <h3 class="relative inline-block text-lg font-semibold text-[#64ffda] mb-6 pb-2">
@@ -369,8 +376,14 @@
                     </div>
                 </div>
             </div>
+            <!-- Sticky Download PDF Button -->
+            <div class="fixed bottom-8 right-8 z-50">
+                <button onclick="generatePDF()" class="bg-[#64ffda] text-[#0a192f] font-bold px-6 py-3 rounded-full shadow-lg hover:bg-[#38b2ac] transition-all duration-300 flex items-center gap-2 focus:outline-none" aria-label="Download Resume as PDF">
+                    <i class="fas fa-file-download"></i> Download PDF
+                </button>
+            </div>
             <section class="space-y-6">
-                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                <div class="bg-gray-800 rounded-lg p-6 hover-card transition-all duration-500 border-l-4 border-[#64ffda]">
                     <h2 class="text-2xl font-semibold flex items-center mb-6">
                         <div class="flex items-center">
                             <span class="text-[#64ffda] font-mono text-sm mr-2">01.</span>
@@ -428,7 +441,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                <div class="bg-gray-800 rounded-lg p-6 hover-card transition-all duration-500 border-l-4 border-yellow-500">
                     <h2 class="text-2xl font-semibold flex items-center mb-6">
                         <div class="flex items-center">
                             <span class="text-[#64ffda] font-mono text-sm mr-2">02.</span>
@@ -461,7 +474,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                <div class="bg-gray-800 rounded-lg p-6 hover-card transition-all duration-500 border-l-4 border-blue-400">
                     <h2 class="text-2xl font-semibold flex items-center mb-6">
                         <div class="flex items-center">
                             <span class="text-[#64ffda] font-mono text-sm mr-2">03.</span>
@@ -517,7 +530,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6 hover-card">
+                <div class="bg-gray-800 rounded-lg p-6 hover-card transition-all duration-500 border-l-4 border-gray-400">
                     <h2 class="text-2xl font-semibold flex items-center mb-6">
                         <div class="flex items-center">
                             <span class="text-[#64ffda] font-mono text-sm mr-2">04.</span>
@@ -548,7 +561,7 @@
                         </ul>
                         <p class="bold-title">PRINCESS Z. BUCE, ECT</p>
                         <ul class="list-disc pl-5 text-gray-300">
-                            <li>Team Leader, FiberHome Cebu</li>
+                            <li>Designer TA of FiberHome Cebu</li>
                             <li>Phone: 09491701808</li>
                         </ul>
                     </div>
@@ -557,6 +570,10 @@
         </main>
     </div>
     <script>
+        // PDF generation function (placeholder, to be implemented)
+        function generatePDF() {
+            alert('PDF download feature coming soon!');
+        }
         function toggleDetails(button) {
             const details = button.nextElementSibling;
             const isVisible = details.classList.contains('show');
